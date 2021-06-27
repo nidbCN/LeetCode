@@ -5,20 +5,17 @@ namespace TwoSum
 {
     public class Solution
     {
+        private Dictionary<int, int> _dict = new();
+
         public int[] TwoSum(int[] nums, int target)
         {
-            var dict = new Dictionary<int, int>();
-
             for (var i = 0; i < nums.Length; i++)
             {
-                var otherNumber = target - nums[i];
+                if (_dict.TryGetValue(target - nums[i], out var index))
+                    return new[] { index, i };
 
-                if (dict.TryGetValue(otherNumber, out var index))
-                    return new int[2] { index, i };
-            
-                dict.Add(nums[i], i);
+                _dict.Add(nums[i], i);
             }
-
             throw new ArgumentException("No solution.");
         }
     }
