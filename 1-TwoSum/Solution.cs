@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TwoSum
 {
@@ -18,7 +19,7 @@ namespace TwoSum
                 dict.Add(nums[i], i);
             }
 
-            return new int[2];
+            throw new ArgumentException("No solution.");
         }
     }
 }
