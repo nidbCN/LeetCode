@@ -5,7 +5,7 @@ namespace TwoSum
 {
     public class Solution
     {
-        private Dictionary<int, int> _dict = new();
+        private readonly Dictionary<int, int> _dict = new();
 
         public int[] TwoSum(int[] nums, int target)
         {

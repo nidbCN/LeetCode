@@ -7,7 +7,7 @@ namespace ReverseInteger
         private readonly int[] _digits = new int[10];
 
         private readonly int[] _powTable = new[] {
-            10,100,1000,10000,100000,1000000,10000000,100000000,1000000000
+            1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000
         };
 
         private readonly int[] _posOverflowTable = new int[]
@@ -22,6 +22,9 @@ namespace ReverseInteger
 
         public int Reverse(int x)
         {
+            if (x == 0) return 0;
+            if (x == int.MinValue) return 0;
+
             var isNegative = x < 0;
             x = Math.Abs(x);
 
@@ -32,39 +35,31 @@ namespace ReverseInteger
                 x /= 10;
             }
 
+            var length = i;
             var ret = 0;
 
-            if (i == 10)
+            // no overflow
+            for (var j = 9; i > 0; j--)
             {
-                while (i >= 0)
-                {
-                    var digit = _digits[10 - i];
+                var digit = _digits[j];
 
-                    // check overflow
-                    if (isNegative)
-                    {
-                        if (digit > _negOverflowTable[i])
-                            return 0;
-                    }
-                    else if (digit > _posOverflowTable[i])
-                        return 0;
-
-                    ret += (int)Math.Pow(10, i--) * digit;
-                }
-
+                ret += _powTable[--i] * digit;
             }
-            else
-            {
-                for (var j = 9; i > 0; j--)
-                {
-                    var digit = _digits[10 - i];
 
-                    ret += (int)Math.Pow(10, --i) * digit;
-                }
-            }
+            if (ret % 10 != _digits[10 - length]) return 0;
 
             if (isNegative) return -ret;
             return ret;
+        }
+
+        private void WriteArray(int[] arr)
+        {
+            Console.Write("[ ");
+            foreach (var item in arr)
+            {
+                Console.Write($"{item}, ");
+            }
+            Console.Write("]");
         }
     }
 }
