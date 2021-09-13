@@ -49,7 +49,7 @@ namespace RomanToInteger
                 {
                 }
 
-                if (!TryParse(prevChar, romanChar, out var charResult))
+                if (!TryParse('y', romanChar, out var charResult))
                 {
                     if (!TryParse(romanChar, out var romanCharResult))
                     {
