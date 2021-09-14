@@ -5,9 +5,15 @@ namespace ClimbingStairs
 {
     public class Solution
     {
+        public static void Main()
+        {
+            var t = new Solution();
+            Console.WriteLine(t.ClimbStairs(44));
+        }
+
         public int ClimbStairs(int n)
         {
-            var result = IsOdd(n) ? 1 : 2;  // 奇数偶数预先加值
+            var result = IsEven(n) ? 2 : 1;  // 奇数偶数预先加值
             var cnt = (n - 1) >> 1;         // 循环组合次数
 
             for (var i = 1; i <= cnt; i++)
@@ -21,8 +27,16 @@ namespace ClimbingStairs
         /// </summary>
         /// <param name="num">数字</param>
         /// <returns>是否为奇数</returns>
-        private static bool IsOdd(int num)
-            => (num & 1) == 1;
+        private static bool IsEven(int num)
+            => (num & 1) == 0;
+
+        /// <summary>
+        /// 是否为奇数
+        /// </summary>
+        /// <param name="num">数字</param>
+        /// <returns>是否为奇数</returns>
+        private static bool IsEven(long num)
+            => (num & 1) == 0;
 
         /// <summary>
         /// 计算阶乘
@@ -46,7 +60,7 @@ namespace ClimbingStairs
 
             // 分子的集合
             var moleculesList = new HashSet<int>();
-            for (var i = 1; i<= n; i++)
+            for (var i = 1; i <= n; i++)
             {
                 moleculesList.Add(i);
             }
@@ -83,15 +97,24 @@ namespace ClimbingStairs
                 }
             }
 
-            // 计算分子分母值
-            foreach(var val in moleculesList)
-            {
-                moleculeValue *= val;
-            }
-
+            // 计算分母值
             foreach (var val in denominatorsList)
             {
                 denominatorValue *= val;
+            }
+            // 计算分子值
+            foreach (var val in moleculesList)
+            {
+                if (IsEven(val) && IsEven(denominatorValue))
+                {
+                    denominatorValue >>= 1;
+                    moleculeValue *= (val >> 1);
+                }
+                else
+                {
+                    moleculeValue *= val;
+                }
+
             }
 
             return (int)(moleculeValue / denominatorValue);
