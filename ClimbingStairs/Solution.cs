@@ -1,15 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClimbingStairs
 {
     public class Solution
     {
-        public static void Main()
-        {
-            var t = new Solution();
-            Console.WriteLine(t.ClimbStairs(35));
-        }
-
         public int ClimbStairs(int n)
         {
             var result = IsOdd(n) ? 1 : 2;  // 奇数偶数预先加值
@@ -26,7 +21,7 @@ namespace ClimbingStairs
         /// </summary>
         /// <param name="num">数字</param>
         /// <returns>是否为奇数</returns>
-        private bool IsOdd(int num)
+        private static bool IsOdd(int num)
             => (num & 1) == 1;
 
         /// <summary>
@@ -44,15 +39,62 @@ namespace ClimbingStairs
         /// <param name="n">元素总个数</param>
         /// <returns></returns>
         private int Combine(int m, int n)
-            => (int)(Permute(m, n) / Factorial(m));
+        {
+            // 分子值
+            long moleculeValue = 1;
+            long denominatorValue;
 
-        /// <summary>
-        /// 排列
-        /// </summary>
-        /// <param name="m">取出元素的个数</param>
-        /// <param name="n">元素总个数</param>
-        /// <returns></returns>
-        private long Permute(int m, int n)
-            => Factorial(n) / Factorial(n - m);
+            // 分子的集合
+            var moleculesList = new HashSet<int>();
+            for (var i = 1; i<= n; i++)
+            {
+                moleculesList.Add(i);
+            }
+
+            // 分母的集合
+            var denominatorsList = new LinkedList<int>();
+
+            // 选取较少的一项进行计算
+            int denominatorCnt;
+
+            var o = n - m;
+            // 分母值
+            if (o > m)
+            {
+                denominatorValue = Factorial(m);
+                denominatorCnt = o;
+            }
+            else
+            {
+                denominatorValue = Factorial(o);
+                denominatorCnt = m;
+            }
+
+            // 进行分子分母相消
+            for (var i = 1; i <= denominatorCnt; i++)
+            {
+                if (moleculesList.Contains(i))
+                {
+                    moleculesList.Remove(i);
+                }
+                else
+                {
+                    denominatorsList.AddLast(i);
+                }
+            }
+
+            // 计算分子分母值
+            foreach(var val in moleculesList)
+            {
+                moleculeValue *= val;
+            }
+
+            foreach (var val in denominatorsList)
+            {
+                denominatorValue *= val;
+            }
+
+            return (int)(moleculeValue / denominatorValue);
+        }
     }
 }
