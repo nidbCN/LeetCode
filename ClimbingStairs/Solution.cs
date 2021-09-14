@@ -5,12 +5,6 @@ namespace ClimbingStairs
 {
     public class Solution
     {
-        public static void Main()
-        {
-            var t = new Solution();
-            Console.WriteLine(t.ClimbStairs(44));
-        }
-
         public int ClimbStairs(int n)
         {
             var result = IsEven(n) ? 2 : 1;  // 奇数偶数预先加值
