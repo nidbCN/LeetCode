@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace BinaryTreeInorderTraversal
 {
@@ -11,10 +10,13 @@ namespace BinaryTreeInorderTraversal
 
             var result = new List<int>();
 
+            // 实际上不需要判空
+            // 递归左
             result.AddRange(InorderTraversal(root.left));
 
             result.Add(root.val);
 
+            // 递归右
             result.AddRange(InorderTraversal(root.right));
 
             return result;
