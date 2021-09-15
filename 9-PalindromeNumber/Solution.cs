@@ -1,34 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PalindromeNumber
+﻿namespace PalindromeNumber
 {
     public class Solution
     {
         public bool IsPalindrome(int x)
         {
-            if (x < 0) return false;
+            if (x < 0)
+                return false;
 
-            var stack = new Stack<int>();
+            var result = 0;
 
-            while (x != 0)
-            {
-                var num = x % 10;
+            for (var num = x; num != 0; num /= 10)
+                result = result * 10 + num % 10;
 
-                if(!stack.TryPeek(out var top))
-                {
-                    if(top != num)
-                    {
-
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-
-                x /= 10;
-            }
+            return result == x;
         }
     }
 }
