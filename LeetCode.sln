@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReverseInteger", "7-Reverse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RomanToInteger", "13-RomanToInteger\RomanToInteger.csproj", "{5918CCA8-0FCA-43E0-A007-D33BBCD4354C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClimbingStairs", "ClimbingStairs\ClimbingStairs.csproj", "{6168A5C1-C6B6-401D-86C1-404368F9A84E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimbingStairs", "70-ClimbingStairs\ClimbingStairs.csproj", "{6168A5C1-C6B6-401D-86C1-404368F9A84E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeInorderTraversal", "BinaryTreeInorderTraversal\BinaryTreeInorderTraversal.csproj", "{893CC233-8CC0-49CC-911A-D476F8A999A1}"
 EndProject
