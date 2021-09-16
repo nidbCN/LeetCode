@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryTreeInorderTraversal"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PalindromeNumber", "9-PalindromeNumber\PalindromeNumber.csproj", "{31015325-E71E-4C5D-AE3B-D58C18F85904}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacificAtlanticWaterFlow", "417-PacificAtlanticWaterFlow\PacificAtlanticWaterFlow.csproj", "{48C9D189-5842-4F21-82B8-D3BB052A3811}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{31015325-E71E-4C5D-AE3B-D58C18F85904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31015325-E71E-4C5D-AE3B-D58C18F85904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31015325-E71E-4C5D-AE3B-D58C18F85904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C9D189-5842-4F21-82B8-D3BB052A3811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C9D189-5842-4F21-82B8-D3BB052A3811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C9D189-5842-4F21-82B8-D3BB052A3811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C9D189-5842-4F21-82B8-D3BB052A3811}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
