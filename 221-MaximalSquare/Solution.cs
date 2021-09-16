@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MaximalSquare
+﻿namespace MaximalSquare
 {
     public class Solution
     {
@@ -10,9 +8,7 @@ namespace MaximalSquare
 
             // 判空
             if (matrix is null || matrix.Length == 0 || matrix[0].Length == 0)
-            {
                 return 0;
-            }
 
             var rows = matrix.Length;
             var columns = matrix[0].Length;
@@ -32,6 +28,7 @@ namespace MaximalSquare
                         {
                             // 判断新增的一行一列是否均为 1
                             var flag = true;
+
                             if (matrix[i + k][j + k] == '0')
                                 break;
 
