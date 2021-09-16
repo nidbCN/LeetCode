@@ -1,38 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace RomanToInteger
 {
     public class Solution
     {
-        private readonly Dictionary<string, int> _romanDict = new()
-        {
-            { "I", 1 },
-            { "V", 5 },
-            { "X", 10 },
-            { "L", 50 },
-            { "C", 100 },
-            { "D", 500 },
-            { "M", 1000 },
-            { "IV", 4 },
-            { "IX", 9 },
-            { "XL", 40 },
-            { "XC", 90 },
-            { "CD", 400 },
-            { "CM", 900 },
-        };
-
         private static bool MayHasNext(char ch)
-            => "IXC".Contains(ch);
+            => (ch) switch
+            {
+                'I' => true,
+                'X' => true,
+                'C' => true,
+                _ => false,
+            };
 
-        private bool TryParse(char ch, out int num)
+        public static bool TryParse(char ch, out int num)
             => TryParse(ch.ToString(), out num);
 
-        private bool TryParse(char ch1, char ch2, out int num)
-            => TryParse(new string(new char[] { ch1, ch2 }), out num);
+        public static bool TryParse(char ch1, char ch2, out int num)
+            => TryParse($"{ch1}{ch2}", out num);
 
-        private bool TryParse(string s, out int num)
-            => _romanDict.TryGetValue(s, out num);
+        public static bool TryParse(string s, out int num)
+            => (num = s switch
+            {
+                "I" => 1,
+                "V" => 5,
+                "X" => 10,
+                "L" => 50,
+                "C" => 100,
+                "D" => 500,
+                "M" => 1000,
+                "IV" => 4,
+                "IX" => 9,
+                "XL" => 40,
+                "XC" => 90,
+                "CD" => 400,
+                "CM" => 900,
+                _ => -1,
+            }) != -1;
 
         public int RomanToInt(string s)
         {
@@ -41,34 +45,27 @@ namespace RomanToInteger
 
             var result = 0;
 
-            for (var i = 0; i < s.Length; i++)
+            var i = 0;
+            while (i < s.Length)
             {
-                var romanChar = s[i];
-
-                if (MayHasNext(romanChar))
+                var ch = s[i];
+                if (MayHasNext(ch) && i < s.Length - 1)
                 {
-                }
-
-                if (!TryParse('y', romanChar, out var charResult))
-                {
-                    if (!TryParse(romanChar, out var romanCharResult))
+                    if (TryParse(ch, s[i + 1], out var numOfTwo))
                     {
-                        throw new ArgumentException($"Unknow character {romanChar}");
-                    }
-                    else
-                    {
-                        result += romanCharResult;
+                        result += numOfTwo;
+                        i += 2;
+                        continue;
                     }
                 }
-                else
-                {
-                    result += charResult;
-                }
+
+                if (TryParse(ch, out var num))
+                    result += num;
+
+                i++;
             }
 
             return result;
         }
-
-
     }
 }
